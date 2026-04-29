@@ -10,7 +10,7 @@
           "settings": {
             "heading": "",
             "subtext": "<h2 style='font-size: 24px; font-weight: bold; margin-bottom: 16px; color: #333;'><span style='color: #ff6a4a;'>idecore</span>.co</h2><p style='color: #777;'>Elegant home decor at your fingertips. Discover stylish table lamps, modern accents, and unique decorative pieces</p>",
-            "show_social": true
+            "show_social": false
           }
         },
         "about": {
