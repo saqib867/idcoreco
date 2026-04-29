@@ -31,7 +31,7 @@
         </h1>
 
         <p class="lux-hero__subtitle lux-fade-up" style="animation-delay:0.2s">
-          {{ section.settings.hero_subtitle | default: 'Discover our curated collection of handcrafted luxury lamps. Where visionary design meets unparalleled warmth.' }}
+          {{ section.settings.hero_subtitle | default: 'Discover our curated collection of luxury lamps. Where visionary design meets unparalleled warmth.' }}
         </p>
 
         <div class="lux-hero__actions lux-fade-up" style="animation-delay:0.3s">
@@ -186,6 +186,43 @@
   {% endif %}
 
   <!-- ══════════════════════════════════════════
+       COLLECTIONS SHOWCASE
+  ══════════════════════════════════════════ -->
+  <section class="lux-collections">
+    <div class="page-width">
+      <div class="lux-section-head lux-scroll-reveal">
+        <p class="lux-section-head__eyebrow">Explore</p>
+        <h2 class="lux-section-head__title">Shop by <em>Category</em></h2>
+        <a href="/collections" class="lux-section-head__link">View All Collections <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+
+      <div class="lux-collections__grid">
+        {% assign collection_count = 0 %}
+        {% for collection in collections %}
+          {% if collection.handle == 'all' or collection.handle == 'frontpage' %}{% continue %}{% endif %}
+          {% assign collection_count = collection_count | plus: 1 %}
+          {% if collection_count > 4 %}{% break %}{% endif %}
+          
+          <a href="{{ collection.url }}" class="lux-collection-card-v2 lux-scroll-reveal" style="animation-delay: {{ forloop.index0 | times: 0.1 | plus: 0.1 }}s">
+            <div class="lux-collection-card-v2__media">
+              {% if collection.featured_image %}
+                <img src="{{ collection.featured_image | img_url: '800x' }}" alt="{{ collection.title | escape }}" loading="lazy" class="lux-collection-card-v2__img">
+              {% else %}
+                {% capture current %}{% cycle 1, 2, 3, 4 %}{% endcapture %}
+                {{ 'collection-' | append: current | placeholder_svg_tag: 'lux-collection-card-v2__img lux-placeholder' }}
+              {% endif %}
+              
+              <div class="lux-collection-card-v2__pill">
+                <span class="lux-collection-card-v2__title">{{ collection.title }}</span>
+              </div>
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
        PRODUCTS SHOWCASE
   ══════════════════════════════════════════ -->
   <section class="lux-products">
@@ -248,7 +285,7 @@
       <div class="lux-cta-banner__content">
         <p class="lux-cta-banner__eyebrow">Limited Time</p>
         <h2 class="lux-cta-banner__title">Craft Your Perfect<br><em>Ambience</em></h2>
-        <p class="lux-cta-banner__sub">Free white-glove delivery on orders over ₹5,000</p>
+        <p class="lux-cta-banner__sub">Free white-glove delivery on orders</p>
       </div>
       <div class="lux-cta-banner__actions">
         <a href="/collections/all" class="lux-btn lux-btn--light">Browse Collection</a>

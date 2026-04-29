@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "name": "t:sections.footer.name",
   "type": "footer",
@@ -14,45 +5,48 @@
     "footer": {
       "type": "footer",
       "blocks": {
-        "55172ef6-3a6a-4cfa-b790-88739b47891f": {
-          "type": "link_list",
+        "brand": {
+          "type": "text",
           "settings": {
-            "heading": "Quick links",
-            "menu": "main-menu"
-          }
-        },
-        "6e0c08d4-cd4c-439c-b5e2-a483bba29ec2": {
-          "type": "brand_information",
-          "settings": {
+            "heading": "",
+            "subtext": "<h2 style='font-size: 24px; font-weight: bold; margin-bottom: 16px; color: #333;'><span style='color: #ff6a4a;'>idecore</span>.co</h2><p style='color: #777;'>Elegant home decor at your fingertips. Discover stylish table lamps, modern accents, and unique decorative pieces</p>",
             "show_social": true
           }
         },
-        "f95fe295-fbc2-4d2b-a952-72670c2ab328": {
+        "about": {
           "type": "text",
           "settings": {
-            "heading": "Resources",
-            "subtext": "<ul><li><a href=\"https://shopify.dev/docs/apps/tools/development-stores/generated-data\" target=\"_blank\" title=\"Generated test data developer docs\">Generated test data docs</a></li><li><a href=\"https://shopify.dev/docs/apps/tools/graphiql-admin-api\" target=\"_blank\" title=\"GraphiQL API explorer\">GraphiQL API explorer</a></li></ul>"
+            "heading": "Our Company",
+            "subtext": "<ul style='list-style: none; padding: 0; margin: 0;'><li><a href='/' style='color:#777; text-decoration:none;'>Home</a></li><li><a href='/collections/all' style='color:#777; text-decoration:none;'>Product</a></li><li><a href='/contact' style='color:#777; text-decoration:none;'>Contact</a></li></ul>"
+          }
+        },
+        "contact": {
+          "type": "text",
+          "settings": {
+            "heading": "Store Information",
+            "subtext": "<ul class='footer-contact-list' style='list-style: none; padding: 0; margin: 0; color: #777;'><li>157md 1st floor sector j phase 6 DHA, Lahore, Pakistan 57000</li><li>03000966631</li><li>gfbinaryoptions0966631@gmail.com</li></ul>",
+            "show_social": true
           }
         }
       },
       "block_order": [
-        "55172ef6-3a6a-4cfa-b790-88739b47891f",
-        "6e0c08d4-cd4c-439c-b5e2-a483bba29ec2",
-        "f95fe295-fbc2-4d2b-a952-72670c2ab328"
+        "brand",
+        "about",
+        "contact"
       ],
       "settings": {
         "color_scheme": "inverse",
         "newsletter_enable": false,
-        "newsletter_heading": "Subscribe to our emails",
-        "enable_follow_on_shop": true,
-        "show_social": true,
+        "newsletter_heading": "",
+        "enable_follow_on_shop": false,
+        "show_social": false,
         "enable_country_selector": false,
-        "enable_language_selector": true,
-        "payment_enable": true,
-        "show_policy": true,
+        "enable_language_selector": false,
+        "payment_enable": false,
+        "show_policy": false,
         "margin_top": 48,
-        "padding_top": 36,
-        "padding_bottom": 36
+        "padding_top": 60,
+        "padding_bottom": 60
       }
     }
   },

@@ -32,11 +32,16 @@
           }
         }
       },
-      "block_order": ["feat-1", "feat-2", "feat-3", "feat-4"],
+      "block_order": [
+        "feat-1",
+        "feat-2",
+        "feat-3",
+        "feat-4"
+      ],
       "settings": {
         "badge_text": "Handcrafted Luxury",
         "hero_title": "Illuminate Your <em>Space</em>",
-        "hero_subtitle": "Discover our curated collection of handcrafted luxury lamps. Where visionary design meets unparalleled warmth.",
+        "hero_subtitle": "Discover our curated collection of luxury lamps. Where visionary design meets unparalleled warmth.",
         "primary_cta_text": "Shop Collection",
         "primary_cta_link": "shopify:\/\/collections\/all",
         "secondary_cta_text": "Our Story",
@@ -46,5 +51,7 @@
       }
     }
   },
-  "order": ["lux-landing"]
+  "order": [
+    "lux-landing"
+  ]
 }

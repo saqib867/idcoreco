@@ -1,119 +1,253 @@
 /* ============================================================
-   LUX CATALOG — Dark Luxury Overrides for Collection Page
+   LUX CATALOG — Collection Page Overrides
+   Cards use .lux-card from custom-landing.css (loaded globally)
    ============================================================ */
 
-#MainContent {
-  background: var(--lux-bg, #08080f);
-  color: var(--lux-cream, #f5f0e8);
+/* ── Keyframes ── */
+@keyframes cat-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
+@keyframes cat-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes cat-orb-pulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.45;
+  }
+
+  50% {
+    transform: scale(1.1);
+    opacity: 0.7;
+  }
+}
+
+/* ── Page background ── */
+#MainContent {
+  background: #fafaf8;
+}
+
+/* ════════════════════════════════════════
+   HERO BANNER
+════════════════════════════════════════ */
 .collection-hero {
-  background: var(--lux-bg);
+  position: relative;
+  background: #ffffff;
+  padding: 56px 0 40px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+  overflow: hidden;
+  text-align: center;
+  animation: cat-fade-in 0.55s ease both;
+}
+
+.collection-hero::before {
+  content: '';
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(201, 168, 76, 0.07) 0%, transparent 70%);
+  top: -200px;
+  right: -100px;
+  pointer-events: none;
+  animation: cat-orb-pulse 8s ease-in-out infinite;
+}
+
+.collection-hero::after {
+  content: '';
+  position: absolute;
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(circle, rgba(230, 92, 0, 0.05) 0%, transparent 70%);
+  bottom: -140px;
+  left: -80px;
+  pointer-events: none;
+  animation: cat-orb-pulse 10s ease-in-out 4s infinite;
+}
+
+.collection-hero__text-wrapper {
+  position: relative;
+  z-index: 1;
+  animation: cat-fade-up 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both;
+}
+
+.collection-hero__text-wrapper::before {
+  content: '✦  Collection';
+  display: inline-block;
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #c9a84c;
+  background: rgba(201, 168, 76, 0.08);
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  padding: 6px 16px;
+  border-radius: 50px;
+  margin-bottom: 18px;
 }
 
 .collection-hero__title {
-  font-family: var(--font-display);
-  font-size: clamp(2.5rem, 5vw, 4.5em);
-  font-weight: 300;
-  text-align: center;
-  color: var(--lux-cream);
-  padding-bottom: 20px;
-  position: relative;
-}
-
-.collection-hero__title::after {
-  content: '';
-  width: 64px;
-  height: 1px;
-  background: linear-gradient(to right, transparent, var(--lux-gold), transparent);
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(28px, 3.5vw, 50px);
+  font-weight: 600;
+  color: #111111;
+  margin: 0;
+  letter-spacing: -0.02em;
+  line-height: 1.12;
 }
 
 .collection-hero__description {
-  font-family: var(--font-body);
-  color: var(--lux-muted);
-  text-align: center;
-  max-width: 600px;
-  margin: 20px auto 0;
+  font-family: 'Inter', -apple-system, sans-serif;
+  color: #888888;
+  max-width: 520px;
+  margin: 14px auto 0;
+  font-size: 15px;
+  line-height: 1.7;
 }
 
-/* Facets & Filters */
+
+
+
+
+
+/* ════════════════════════════════════════
+   FACETS & FILTERS (MINIMALIST LUXURY)
+════════════════════════════════════════ */
 .facets-container {
-  border-bottom: 1px solid rgba(201,168,76,0.1);
-  padding-bottom: 20px;
+  margin-top: 40px;
 }
 
-.facets__heading, 
-.facet-filters__label,
-.product-count__text,
-.facets__summary,
-.facets__display,
-.facet-checkbox {
-  color: var(--lux-cream) !important;
-  font-family: var(--font-body);
+.facets-vertical-form {
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  padding-bottom: 24px;
 }
 
-.facet-checkbox {
-  color: var(--lux-muted) !important;
+.facet-filters__label {
+  font-family: 'Outfit', sans-serif !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+  font-size: 11px !important;
+  color: #888 !important;
 }
 
 .facet-filters__sort {
-  background-color: var(--lux-surface);
-  color: var(--lux-gold) !important;
-  border-color: rgba(201,168,76,0.3) !important;
-  font-family: var(--font-body);
-}
-
-/* Product Cards */
-.card-wrapper {
-  background: var(--lux-surface) !important;
-  border: 1px solid rgba(201,168,76,0.06) !important;
-  border-radius: 6px;
-  transition: all var(--transition-med);
-  height: 100%;
-}
-
-.card-wrapper:hover {
-  border-color: rgba(201,168,76,0.22) !important;
-  box-shadow: 0 24px 60px rgba(0,0,0,0.5), 0 0 50px rgba(201,168,76,0.06) !important;
-  transform: translateY(-6px);
-}
-
-.card__inner {
-  background: var(--lux-surface-2) !important;
-}
-
-.card__heading {
-  color: var(--lux-cream) !important;
-  font-family: var(--font-display) !important;
-  transition: color var(--transition-fast);
-}
-
-.card-wrapper:hover .card__heading {
-  color: var(--lux-gold-light) !important;
-}
-
-.price {
-  color: var(--lux-gold) !important;
-}
-
-.price__regular .price-item--regular {
-  color: var(--lux-gold) !important;
-  font-family: var(--font-body);
-}
-
-.price__sale .price-item--sale {
-  color: var(--lux-gold-light) !important;
-}
-
-.badge {
-  background: linear-gradient(135deg, var(--lux-gold), var(--lux-amber)) !important;
-  color: #0a0a14 !important;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-weight: 700;
+  background: transparent !important;
   border: none !important;
+  font-family: 'Outfit', sans-serif !important;
+  font-weight: 500 !important;
+  font-size: 14px !important;
+  color: #111 !important;
+  padding-right: 30px !important;
+}
+
+.facets__summary {
+  font-family: 'Outfit', sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 15px !important;
+  letter-spacing: 0.02em !important;
+}
+
+.facets__display {
+  background: #ffffff !important;
+  border: 1px solid rgba(0,0,0,0.05) !important;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05) !important;
+  border-radius: 12px !important;
+}
+
+.facets__item label {
+  font-size: 14px !important;
+  color: #444 !important;
+}
+
+.facets__item:hover label {
+  color: #ff6a4a !important;
+}
+
+.facets__price {
+  padding: 20px !important;
+}
+
+.facets__price .field__input {
+  border-radius: 8px !important;
+  border: 1px solid rgba(0,0,0,0.1) !important;
+  padding: 10px !important;
+}
+
+/* Active Facets (Pills) */
+.active-facets__button {
+  background: #f4f4f4 !important;
+  border-radius: 50px !important;
+  padding: 8px 16px !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  border: none !important;
+  transition: all 0.2s ease !important;
+}
+
+.active-facets__button:hover {
+  background: #111 !important;
+  color: #fff !important;
+}
+
+/* ════════════════════════════════════════
+   PRODUCT GRID SPACING & CARD POLISH
+════════════════════════════════════════ */
+.collection-product-grid {
+  padding: 60px 0 !important;
+}
+
+.grid--4-col-desktop {
+  column-gap: 32px !important;
+  row-gap: 48px !important;
+}
+
+/* ════════════════════════════════════════
+   PAGINATION (REFINED)
+════════════════════════════════════════ */
+.pagination-wrapper {
+  border-top: 1px solid rgba(0,0,0,0.05) !important;
+  padding-top: 60px !important;
+  margin-top: 60px !important;
+}
+
+.pagination__item--current:after {
+  content: none !important;
+}
+
+.pagination__item--current {
+  background: #111 !important;
+  color: #fff !important;
+  border-radius: 50% !important;
+}
+
+/* Background refinement for the whole page */
+.template-collection #MainContent {
+  background-color: #ffffff !important;
+  color: #111111 !important;
+}
+
+.template-collection .card__heading, 
+.template-collection .price, 
+.template-collection .facet-filters__label,
+.template-collection .facets__summary {
+  color: #111111 !important;
 }

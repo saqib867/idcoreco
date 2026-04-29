@@ -172,7 +172,7 @@
                         {%- if link.links != blank -%}
                           <details id="Details-menu-drawer-menu-item-{{ forloop.index }}">
                             <summary class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.child_active %} menu-drawer__menu-item--active{% endif %}">
-                              {{ link.title | escape }}
+                              {{ link.title | replace: 'Catalog', 'Products' | escape }}
                               {% render 'icon-arrow' %}
                               {% render 'icon-caret' %}
                             </summary>
@@ -180,32 +180,32 @@
                               <div class="menu-drawer__inner-submenu">
                                 <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">
                                   {% render 'icon-arrow' %}
-                                  {{ link.title | escape }}
+                                  {{ link.title | replace: 'Catalog', 'Products' | escape }}
                                 </button>
                                 <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
                                   {%- for childlink in link.links -%}
                                     <li>
                                       {%- if childlink.links == blank -%}
                                         <a href="{{ childlink.url }}" class="menu-drawer__menu-item link link--text list-menu__item focus-inset{% if childlink.current %} menu-drawer__menu-item--active{% endif %}"{% if childlink.current %} aria-current="page"{% endif %}>
-                                          {{ childlink.title | escape }}
+                                          {{ childlink.title | replace: 'Catalog', 'Products' | escape }}
                                         </a>
                                       {%- else -%}
                                         <details id="Details-menu-drawer-submenu-{{ forloop.index }}">
                                           <summary class="menu-drawer__menu-item link link--text list-menu__item focus-inset">
-                                            {{ childlink.title | escape }}
+                                            {{ childlink.title | replace: 'Catalog', 'Products' | escape }}
                                             {% render 'icon-arrow' %}
                                             {% render 'icon-caret' %}
                                           </summary>
                                           <div id="childlink-{{ childlink.handle | escape }}" class="menu-drawer__submenu has-submenu gradient motion-reduce">
                                             <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">
                                               {% render 'icon-arrow' %}
-                                              {{ childlink.title | escape }}
+                                              {{ childlink.title | replace: 'Catalog', 'Products' | escape }}
                                             </button>
                                             <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
                                               {%- for grandchildlink in childlink.links -%}
                                                 <li>
                                                   <a href="{{ grandchildlink.url }}" class="menu-drawer__menu-item link link--text list-menu__item focus-inset{% if grandchildlink.current %} menu-drawer__menu-item--active{% endif %}"{% if grandchildlink.current %} aria-current="page"{% endif %}>
-                                                    {{ grandchildlink.title | escape }}
+                                                    {{ grandchildlink.title | replace: 'Catalog', 'Products' | escape }}
                                                   </a>
                                                 </li>
                                               {%- endfor -%}
@@ -221,11 +221,16 @@
                           </details>
                         {%- else -%}
                           <a href="{{ link.url }}" class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.current %} menu-drawer__menu-item--active{% endif %}"{% if link.current %} aria-current="page"{% endif %}>
-                            {{ link.title | escape }}
+                            {{ link.title | replace: 'Catalog', 'Products' | escape }}
                           </a>
                         {%- endif -%}
                       </li>
                     {%- endfor -%}
+                    <li>
+                      <a href="/collections" class="menu-drawer__menu-item list-menu__item link link--text focus-inset">
+                        Collections
+                      </a>
+                    </li>
                   </ul>
                 </nav>
                 <div class="menu-drawer__utility-links">
@@ -472,7 +477,7 @@
                   <header-menu>
                     <details id="Details-HeaderMenu-{{ forloop.index }}">
                       <summary class="header__menu-item list-menu__item link focus-inset">
-                        <span {%- if link.child_active %} class="header__active-menu-item"{% endif %}>{{ link.title | escape }}</span>
+                        <span {%- if link.child_active %} class="header__active-menu-item"{% endif %}>{{ link.title | replace: 'Catalog', 'Products' | escape }}</span>
                         {% render 'icon-caret' %}
                       </summary>
                       <ul id="HeaderMenu-MenuList-{{ forloop.index }}" class="header__submenu list-menu list-menu--disclosure gradient caption-large motion-reduce global-settings-popup" role="list" tabindex="-1">
@@ -480,19 +485,19 @@
                           <li>
                             {%- if childlink.links == blank -%}
                               <a href="{{ childlink.url }}" class="header__menu-item list-menu__item link link--text focus-inset caption-large{% if childlink.current %} list-menu__item--active{% endif %}"{% if childlink.current %} aria-current="page"{% endif %}>
-                                {{ childlink.title | escape }}
+                                {{ childlink.title | replace: 'Catalog', 'Products' | escape }}
                               </a>
                             {%- else -%}
                               <details id="Details-HeaderSubMenu-{{ forloop.index }}">
                                 <summary class="header__menu-item link link--text list-menu__item focus-inset caption-large">
-                                  <span>{{ childlink.title | escape }}</span>
+                                  <span>{{ childlink.title | replace: 'Catalog', 'Products' | escape }}</span>
                                   {% render 'icon-caret' %}
                                 </summary>
                                 <ul id="HeaderMenu-SubMenuList-{{ forloop.index }}" class="header__submenu list-menu motion-reduce">
                                   {%- for grandchildlink in childlink.links -%}
                                     <li>
                                       <a href="{{ grandchildlink.url }}" class="header__menu-item list-menu__item link link--text focus-inset caption-large{% if grandchildlink.current %} list-menu__item--active{% endif %}"{% if grandchildlink.current %} aria-current="page"{% endif %}>
-                                        {{ grandchildlink.title | escape }}
+                                        {{ grandchildlink.title | replace: 'Catalog', 'Products' | escape }}
                                       </a>
                                     </li>
                                   {%- endfor -%}
@@ -506,11 +511,16 @@
                   </header-menu>
                 {%- else -%}
                   <a href="{{ link.url }}" class="header__menu-item list-menu__item link link--text focus-inset"{% if link.current %} aria-current="page"{% endif %}>
-                    <span {%- if link.current %} class="header__active-menu-item"{% endif %}>{{ link.title | escape }}</span>
+                    <span {%- if link.current %} class="header__active-menu-item"{% endif %}>{{ link.title | replace: 'Catalog', 'Products' | escape }}</span>
                   </a>
                 {%- endif -%}
               </li>
             {%- endfor -%}
+            <li>
+              <a href="/collections" class="header__menu-item list-menu__item link link--text focus-inset">
+                <span>Collections</span>
+              </a>
+            </li>
           </ul>
         </nav>
       {%- elsif section.settings.menu_type_desktop != 'drawer' -%}
@@ -522,7 +532,7 @@
                   <header-menu>
                     <details id="Details-HeaderMenu-{{ forloop.index }}" class="mega-menu">
                       <summary class="header__menu-item list-menu__item link focus-inset">
-                        <span {%- if link.child_active %} class="header__active-menu-item"{% endif %}>{{ link.title | escape }}</span>
+                        <span {%- if link.child_active %} class="header__active-menu-item"{% endif %}>{{ link.title | replace: 'Catalog', 'Products' | escape }}</span>
                         {% render 'icon-caret' %}
                       </summary>
                       <div id="MegaMenu-Content-{{ forloop.index }}" class="mega-menu__content gradient motion-reduce global-settings-popup" tabindex="-1">
@@ -530,14 +540,14 @@
                           {%- for childlink in link.links -%}
                             <li>
                               <a href="{{ childlink.url }}" class="mega-menu__link mega-menu__link--level-2 link{% if childlink.current %} mega-menu__link--active{% endif %}"{% if childlink.current %} aria-current="page"{% endif %}>
-                                {{ childlink.title | escape }}
+                                {{ childlink.title | replace: 'Catalog', 'Products' | escape }}
                               </a>
                               {%- if childlink.links != blank -%}
                                 <ul class="list-unstyled" role="list">
                                   {%- for grandchildlink in childlink.links -%}
                                     <li>
                                       <a href="{{ grandchildlink.url }}" class="mega-menu__link link{% if grandchildlink.current %} mega-menu__link--active{% endif %}"{% if grandchildlink.current %} aria-current="page"{% endif %}>
-                                        {{ grandchildlink.title | escape }}
+                                        {{ grandchildlink.title | replace: 'Catalog', 'Products' | escape }}
                                       </a>
                                     </li>
                                   {%- endfor -%}
@@ -551,11 +561,16 @@
                   </header-menu>
                 {%- else -%}
                   <a href="{{ link.url }}" class="header__menu-item list-menu__item link link--text focus-inset"{% if link.current %} aria-current="page"{% endif %}>
-                    <span {%- if link.current %} class="header__active-menu-item"{% endif %}>{{ link.title | escape }}</span>
+                    <span {%- if link.current %} class="header__active-menu-item"{% endif %}>{{ link.title | replace: 'Catalog', 'Products' | escape }}</span>
                   </a>
                 {%- endif -%}
               </li>
             {%- endfor -%}
+            <li>
+              <a href="/collections" class="header__menu-item list-menu__item link link--text focus-inset">
+                <span>Collections</span>
+              </a>
+            </li>
           </ul>
         </nav>
       {%- endif -%}

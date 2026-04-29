@@ -1,0 +1,115 @@
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+
+<section class="lux-collections section-{{ section.id }}-padding">
+  <div class="page-width">
+    <!-- Section Header -->
+    <div class="lux-section-head lux-fade-up">
+      <div class="lux-section-head__content">
+        <span class="lux-badge">
+          <span class="lux-badge__dot"></span>
+          {{ section.settings.badge_text | default: 'Curated Selection' }}
+        </span>
+        <h2 class="lux-section-head__title">{{ section.settings.title | default: 'Our Collections' }}</h2>
+      </div>
+      <a href="/collections" class="lux-section-head__link">
+        Browse All Collections
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Collections Grid -->
+    <div class="lux-collections__grid">
+      {%- for block in section.blocks -%}
+        {%- assign collection = block.settings.collection -%}
+        <a href="{{ collection.url | default: '#' }}" class="lux-collection-card lux-fade-up" style="animation-delay: {{ forloop.index | times: 0.1 }}s">
+          <div class="lux-collection-card__media">
+            {%- if collection.featured_image -%}
+              {{ collection.featured_image | image_url: width: 800 | image_tag: loading: 'lazy', class: 'lux-collection-card__img' }}
+            {%- else -%}
+              {{ 'collection-1' | placeholder_svg_tag: 'lux-collection-card__img lux-placeholder' }}
+            {%- endif -%}
+            
+            <div class="lux-collection-card__overlay"></div>
+            
+            <div class="lux-collection-card__content">
+              <h3 class="lux-collection-card__title">{{ collection.title | default: 'Collection Name' }}</h3>
+              <p class="lux-collection-card__count">{{ collection.all_products_count | default: 0 }} Products</p>
+              
+              <div class="lux-collection-card__action">
+                <span class="lux-btn lux-btn--small lux-btn--light">Explore</span>
+              </div>
+            </div>
+          </div>
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Luxury Collections",
+  "tag": "section",
+  "class": "section",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge Text",
+      "default": "Curated Selection"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Our Collections"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 64
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Luxury Collections",
+      "blocks": [
+        { "type": "collection" },
+        { "type": "collection" },
+        { "type": "collection" }
+      ]
+    }
+  ]
+}
+{% endschema %}
