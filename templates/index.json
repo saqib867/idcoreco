@@ -48,19 +48,48 @@
         "feat-4"
       ],
       "settings": {
+        "featured_collection": "",
         "badge_text": "Handcrafted Luxury",
         "hero_title": "Illuminate Your <em>Space</em>",
         "hero_subtitle": "Discover our curated collection of luxury lamps. Where visionary design meets unparalleled warmth.",
         "primary_cta_text": "Shop Collection",
-        "primary_cta_link": "shopify:\/\/collections\/all",
+        "primary_cta_link": "shopify://collections/all",
         "secondary_cta_text": "Our Story",
         "secondary_cta_link": "",
         "products_eyebrow": "Featured",
         "products_title": "Signature <em>Pieces</em>"
       }
+    },
+    "17774905589bcc35df": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_9a96180_Citz7G": {
+          "type": "ai_gen_block_9a96180",
+          "settings": {
+            "whatsapp_number": "03000966631",
+            "message": "Hey, How may I help you?",
+            "button_color": "#25D366",
+            "button_hover_color": "#128C7E",
+            "icon_color": "#FFFFFF",
+            "button_size": 60,
+            "button_size_mobile": 55,
+            "border_radius": 30,
+            "bottom_position": 20,
+            "left_position": 20,
+            "bottom_position_mobile": 20,
+            "left_position_mobile": 15
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_9a96180_Citz7G"
+      ],
+      "settings": {}
     }
   },
   "order": [
-    "lux-landing"
+    "lux-landing",
+    "17774905589bcc35df"
   ]
 }
