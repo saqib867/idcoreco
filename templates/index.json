@@ -1,0 +1,50 @@
+{
+  "sections": {
+    "lux-landing": {
+      "type": "lux-landing",
+      "blocks": {
+        "feat-1": {
+          "type": "feature",
+          "settings": {
+            "title": "Master Craftsmanship",
+            "description": "Each lamp is meticulously shaped by seasoned artisans using time-honored techniques."
+          }
+        },
+        "feat-2": {
+          "type": "feature",
+          "settings": {
+            "title": "Premium Metals",
+            "description": "Forged from solid brass, aged bronze, and pure copper for an everlasting shine."
+          }
+        },
+        "feat-3": {
+          "type": "feature",
+          "settings": {
+            "title": "Warm Ambience",
+            "description": "Engineered to diffuse the perfect golden glow for a cozy, inviting atmosphere."
+          }
+        },
+        "feat-4": {
+          "type": "feature",
+          "settings": {
+            "title": "Bespoke Service",
+            "description": "White-glove delivery worldwide and a lifetime warranty on all fixtures."
+          }
+        }
+      },
+      "block_order": ["feat-1", "feat-2", "feat-3", "feat-4"],
+      "settings": {
+        "badge_text": "Handcrafted Luxury",
+        "hero_title": "Illuminate Your <em>Space</em>",
+        "hero_subtitle": "Discover our curated collection of handcrafted luxury lamps. Where visionary design meets unparalleled warmth.",
+        "primary_cta_text": "Shop Collection",
+        "primary_cta_link": "shopify:\/\/collections\/all",
+        "secondary_cta_text": "Our Story",
+        "secondary_cta_link": "",
+        "products_eyebrow": "Featured",
+        "products_title": "Signature <em>Pieces</em>"
+      }
+    }
+  },
+  "order": ["lux-landing"]
+}

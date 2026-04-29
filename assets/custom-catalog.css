@@ -1,0 +1,119 @@
+/* ============================================================
+   LUX CATALOG — Dark Luxury Overrides for Collection Page
+   ============================================================ */
+
+#MainContent {
+  background: var(--lux-bg, #08080f);
+  color: var(--lux-cream, #f5f0e8);
+}
+
+.collection-hero {
+  background: var(--lux-bg);
+}
+
+.collection-hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 4.5em);
+  font-weight: 300;
+  text-align: center;
+  color: var(--lux-cream);
+  padding-bottom: 20px;
+  position: relative;
+}
+
+.collection-hero__title::after {
+  content: '';
+  width: 64px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--lux-gold), transparent);
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.collection-hero__description {
+  font-family: var(--font-body);
+  color: var(--lux-muted);
+  text-align: center;
+  max-width: 600px;
+  margin: 20px auto 0;
+}
+
+/* Facets & Filters */
+.facets-container {
+  border-bottom: 1px solid rgba(201,168,76,0.1);
+  padding-bottom: 20px;
+}
+
+.facets__heading, 
+.facet-filters__label,
+.product-count__text,
+.facets__summary,
+.facets__display,
+.facet-checkbox {
+  color: var(--lux-cream) !important;
+  font-family: var(--font-body);
+}
+
+.facet-checkbox {
+  color: var(--lux-muted) !important;
+}
+
+.facet-filters__sort {
+  background-color: var(--lux-surface);
+  color: var(--lux-gold) !important;
+  border-color: rgba(201,168,76,0.3) !important;
+  font-family: var(--font-body);
+}
+
+/* Product Cards */
+.card-wrapper {
+  background: var(--lux-surface) !important;
+  border: 1px solid rgba(201,168,76,0.06) !important;
+  border-radius: 6px;
+  transition: all var(--transition-med);
+  height: 100%;
+}
+
+.card-wrapper:hover {
+  border-color: rgba(201,168,76,0.22) !important;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.5), 0 0 50px rgba(201,168,76,0.06) !important;
+  transform: translateY(-6px);
+}
+
+.card__inner {
+  background: var(--lux-surface-2) !important;
+}
+
+.card__heading {
+  color: var(--lux-cream) !important;
+  font-family: var(--font-display) !important;
+  transition: color var(--transition-fast);
+}
+
+.card-wrapper:hover .card__heading {
+  color: var(--lux-gold-light) !important;
+}
+
+.price {
+  color: var(--lux-gold) !important;
+}
+
+.price__regular .price-item--regular {
+  color: var(--lux-gold) !important;
+  font-family: var(--font-body);
+}
+
+.price__sale .price-item--sale {
+  color: var(--lux-gold-light) !important;
+}
+
+.badge {
+  background: linear-gradient(135deg, var(--lux-gold), var(--lux-amber)) !important;
+  color: #0a0a14 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  border: none !important;
+}

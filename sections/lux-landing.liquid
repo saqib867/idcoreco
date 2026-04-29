@@ -1,0 +1,356 @@
+
+<div class="lux-landing-wrapper">
+  {{ 'custom-landing.css' | asset_url | append: '&v=lux-v6' | stylesheet_tag }}
+
+  {%- liquid
+    assign hero_collection = collections[section.settings.featured_collection]
+    if hero_collection == blank or hero_collection.products.size == 0
+      assign hero_collection = collections['all']
+    endif
+    assign hero_products = hero_collection.products
+  -%}
+
+  <!-- ══════════════════════════════════════════
+       HERO SECTION
+  ══════════════════════════════════════════ -->
+  <section class="lux-hero">
+    <div class="lux-hero__bg-orb lux-hero__bg-orb--1"></div>
+    <div class="lux-hero__bg-orb lux-hero__bg-orb--2"></div>
+    <div class="lux-hero__bg-orb lux-hero__bg-orb--3"></div>
+
+    <div class="page-width lux-hero__inner">
+      <!-- Left: Text Content -->
+      <div class="page-width lux-hero__content">
+        <span class="lux-badge lux-fade-up" style="animation-delay:0.0s">
+          <span class="lux-badge__dot"></span>
+          {{ section.settings.badge_text | default: 'Handcrafted Luxury' }}
+        </span>
+
+        <h1 class="lux-hero__title lux-fade-up" style="animation-delay:0.1s">
+          {{ section.settings.hero_title | default: 'Illuminate Your <em>Space</em>' }}
+        </h1>
+
+        <p class="lux-hero__subtitle lux-fade-up" style="animation-delay:0.2s">
+          {{ section.settings.hero_subtitle | default: 'Discover our curated collection of handcrafted luxury lamps. Where visionary design meets unparalleled warmth.' }}
+        </p>
+
+        <div class="lux-hero__actions lux-fade-up" style="animation-delay:0.3s">
+          <a href="{{ section.settings.primary_cta_link | default: '/collections/all' }}" class="lux-btn lux-btn--primary">
+            <span>{{ section.settings.primary_cta_text | default: 'Shop Collection' }}</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          {% if section.settings.secondary_cta_link != blank %}
+            <a href="{{ section.settings.secondary_cta_link }}" class="lux-btn lux-btn--ghost">
+              {{ section.settings.secondary_cta_text | default: 'Our Story' }}
+            </a>
+          {% endif %}
+        </div>
+
+        <!-- Stats Row -->
+        <div class="lux-stats lux-fade-up" style="animation-delay:0.45s">
+          <div class="lux-stat">
+            <span class="lux-stat__num" data-count="500">100+</span><span class="lux-stat__suffix"></span>
+            <span class="lux-stat__label">Products</span>
+          </div>
+          <div class="lux-stat__divider"></div>
+          <div class="lux-stat">
+            <span class="lux-stat__num" data-count="12">20+</span><span class="lux-stat__suffix"></span>
+            <span class="lux-stat__label">Happy Clients</span>
+          </div>
+          <div class="lux-stat__divider"></div>
+          <div class="lux-stat">
+            <span class="lux-stat__num" data-count="98">100%</span><span class="lux-stat__suffix"></span>
+            <span class="lux-stat__label">Satisfaction</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Carousel -->
+      <div class="lux-hero__carousel-wrap lux-fade-right" style="animation-delay:0.15s">
+        <div class="lux-carousel" id="LuxHeroCarousel">
+          {% for i in (0..2) %}
+            {% if hero_products[i] != blank %}
+              <div class="lux-carousel__slide {% if forloop.first %}is-active{% endif %}" data-index="{{ forloop.index0 }}">
+                <div class="lux-carousel__media">
+                  {% if hero_products[i].featured_image %}
+                    <img
+                      src="{{ hero_products[i].featured_image | img_url: '700x' }}"
+                      alt="{{ hero_products[i].title | escape }}"
+                      loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
+                    >
+                  {% else %}
+                    <div class="lux-carousel__placeholder">{{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}</div>
+                  {% endif %}
+                </div>
+                <div class="lux-carousel__info">
+                  <p class="lux-carousel__vendor">{{ hero_products[i].vendor | upcase | default: 'SIGNATURE' }}</p>
+                  <h2 class="lux-carousel__title">{{ hero_products[i].title }}</h2>
+                  <div class="lux-carousel__price-row">
+                    <span class="lux-carousel__price">{{ hero_products[i].price | money }}</span>
+                    {% if hero_products[i].compare_at_price > hero_products[i].price %}
+                      <span class="lux-carousel__compare">{{ hero_products[i].compare_at_price | money }}</span>
+                      {% assign savings = hero_products[i].compare_at_price | minus: hero_products[i].price | times: 100 | divided_by: hero_products[i].compare_at_price %}
+                      <span class="lux-carousel__badge">−{{ savings }}%</span>
+                    {% endif %}
+                  </div>
+                  <a href="{{ hero_products[i].url }}" class="lux-carousel__cta">
+                    View Product
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </a>
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+
+        <!-- Carousel Controls -->
+        <div class="lux-carousel__controls">
+          <div class="lux-carousel__dots" id="LuxCarouselDots">
+            {% for i in (0..2) %}
+              {% if hero_products[i] != blank %}
+                <button class="lux-carousel__dot {% if forloop.first %}is-active{% endif %}" data-index="{{ forloop.index0 }}" aria-label="Slide {{ forloop.index }}"></button>
+              {% endif %}
+            {% endfor %}
+          </div>
+          <div class="lux-carousel__arrows">
+            <button class="lux-carousel__arrow lux-carousel__arrow--prev" id="LuxPrev" aria-label="Previous">
+              <svg width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 4L3 8l4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button class="lux-carousel__arrow lux-carousel__arrow--next" id="LuxNext" aria-label="Next">
+              <svg width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Floating accent cards -->
+        <div class="lux-hero__float-card lux-hero__float-card--tl">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <span>Premium Quality</span>
+        </div>
+        <div class="lux-hero__float-card lux-hero__float-card--br">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+          <span>Free Shipping</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       MARQUEE STRIP
+  ══════════════════════════════════════════ -->
+  <div class="lux-marquee-strip">
+    <div class="lux-marquee-track">
+      {% for i in (1..4) %}
+        <span>Handcrafted Luxury</span>
+        <span class="lux-marquee-dot">✦</span>
+        <span>Premium Materials</span>
+        <span class="lux-marquee-dot">✦</span>
+        <span>Free Worldwide Shipping</span>
+        <span class="lux-marquee-dot">✦</span>
+        <span>Lifetime Warranty</span>
+        <span class="lux-marquee-dot">✦</span>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       FEATURES STRIP
+  ══════════════════════════════════════════ -->
+  {% if section.blocks.size > 0 %}
+    <section class="lux-features">
+      <div class="page-width lux-features__inner">
+        {% for block in section.blocks %}
+          {% if block.type == 'feature' %}
+            <div class="lux-feature lux-scroll-reveal" style="animation-delay:{{ forloop.index0 | times: 0.1 }}s" {{ block.shopify_attributes }}>
+              <div class="lux-feature__icon">
+                {% case forloop.index %}
+                  {% when 1 %}
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+                  {% when 2 %}
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  {% when 3 %}
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                  {% else %}
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 12V22H4V12"/><path d="M22 7H2v5h20V7z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/></svg>
+                {% endcase %}
+              </div>
+              <div class="lux-feature__body">
+                <h3 class="lux-feature__title">{{ block.settings.title }}</h3>
+                <p class="lux-feature__desc">{{ block.settings.description }}</p>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+
+  <!-- ══════════════════════════════════════════
+       PRODUCTS SHOWCASE
+  ══════════════════════════════════════════ -->
+  <section class="lux-products">
+    <div class="page-width lux-products__inner">
+      <div class="lux-section-head lux-scroll-reveal">
+        <p class="lux-section-head__eyebrow">{{ section.settings.products_eyebrow | default: 'Featured' }}</p>
+        <h2 class="lux-section-head__title">{{ section.settings.products_title | default: 'Signature <em>Pieces</em>' }}</h2>
+        <a href="/collections/all" class="lux-section-head__link">View All <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+
+      <div class="lux-products__grid">
+        {% assign featured_collection = collections[section.settings.featured_collection] %}
+        {% if featured_collection == blank or featured_collection.products.size == 0 %}
+          {% assign featured_collection = collections['all'] %}
+        {% endif %}
+
+        {% for product in featured_collection.products limit: 8 %}
+          <a href="{{ product.url }}" class="lux-card lux-scroll-reveal" style="animation-delay:{{ forloop.index0 | times: 0.08 | plus: 0.1 }}s">
+            <div class="lux-card__media">
+              {% if product.featured_image %}
+                <img
+                  src="{{ product.featured_image | img_url: '600x' }}"
+                  alt="{{ product.title | escape }}"
+                  loading="lazy"
+                >
+              {% else %}
+                <div class="lux-card__placeholder">{{ 'product-1' | placeholder_svg_tag }}</div>
+              {% endif %}
+              {% if product.compare_at_price > product.price %}
+                {% assign pct = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price %}
+                <span class="lux-card__sale-badge">−{{ pct }}%</span>
+              {% endif %}
+              <div class="lux-card__hover-overlay">
+                <span class="lux-card__hover-cta">Quick View</span>
+              </div>
+            </div>
+            <div class="lux-card__info">
+              <span class="lux-card__vendor">{{ product.vendor }}</span>
+              <h3 class="lux-card__title">{{ product.title }}</h3>
+              <div class="lux-card__price-row">
+                <span class="lux-card__price">{{ product.price | money }}</span>
+                {% if product.compare_at_price > product.price %}
+                  <span class="lux-card__compare">{{ product.compare_at_price | money }}</span>
+                {% endif %}
+              </div>
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       CTA BANNER
+  ══════════════════════════════════════════ -->
+  <section class="lux-cta-banner lux-scroll-reveal">
+    <div class="lux-cta-banner__orb lux-cta-banner__orb--1"></div>
+    <div class="lux-cta-banner__orb lux-cta-banner__orb--2"></div>
+    <div class="page-width lux-cta-banner__inner">
+      <div class="lux-cta-banner__content">
+        <p class="lux-cta-banner__eyebrow">Limited Time</p>
+        <h2 class="lux-cta-banner__title">Craft Your Perfect<br><em>Ambience</em></h2>
+        <p class="lux-cta-banner__sub">Free white-glove delivery on orders over ₹5,000</p>
+      </div>
+      <div class="lux-cta-banner__actions">
+        <a href="/collections/all" class="lux-btn lux-btn--light">Browse Collection</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+(function() {
+  /* ── Carousel ── */
+  const carousel = document.getElementById('LuxHeroCarousel');
+  if (!carousel) return;
+
+  const slides   = carousel.querySelectorAll('.lux-carousel__slide');
+  const dots     = document.querySelectorAll('#LuxCarouselDots .lux-carousel__dot');
+  const prevBtn  = document.getElementById('LuxPrev');
+  const nextBtn  = document.getElementById('LuxNext');
+  let current = 0, timer, paused = false;
+
+  function goTo(n) {
+    slides[current].classList.remove('is-active');
+    dots[current] && dots[current].classList.remove('is-active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('is-active');
+    dots[current] && dots[current].classList.add('is-active');
+  }
+
+  function next() { if (!paused) goTo(current + 1); }
+
+  function startTimer() { clearInterval(timer); timer = setInterval(next, 4500); }
+
+  dots.forEach((d, i) => d.addEventListener('click', () => { goTo(i); startTimer(); }));
+  prevBtn && prevBtn.addEventListener('click', () => { goTo(current - 1); startTimer(); });
+  nextBtn && nextBtn.addEventListener('click', () => { goTo(current + 1); startTimer(); });
+  carousel.addEventListener('mouseenter', () => paused = true);
+  carousel.addEventListener('mouseleave', () => paused = false);
+
+  startTimer();
+
+  /* ── Count-up Stats ── */
+  function countUp(el) {
+    const target = parseInt(el.dataset.count, 10);
+    const duration = 1600;
+    const step = target / (duration / 16);
+    let val = 0;
+    const id = setInterval(() => {
+      val = Math.min(val + step, target);
+      el.textContent = Math.floor(val);
+      if (val >= target) clearInterval(id);
+    }, 16);
+  }
+
+  /* ── Scroll Reveal + Count-Up ── */
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        entry.target.querySelectorAll('[data-count]').forEach(countUp);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.lux-scroll-reveal, .lux-stats').forEach(el => observer.observe(el));
+
+  /* Trigger stats on page load if in viewport */
+  document.querySelectorAll('.lux-stats').forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight) {
+      el.querySelectorAll('[data-count]').forEach(countUp);
+    }
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Luxury Landing",
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "Master Craftsmanship" },
+        { "type": "textarea", "id": "description", "label": "Description", "default": "Each lamp is meticulously shaped by seasoned artisans using time-honored techniques." }
+      ]
+    }
+  ],
+  "settings": [
+    { "type": "collection", "id": "featured_collection", "label": "Featured Collection" },
+    { "type": "text", "id": "badge_text", "label": "Hero Badge", "default": "Handcrafted Luxury" },
+    { "type": "text", "id": "hero_title", "label": "Hero Title", "default": "Illuminate Your <em>Space</em>" },
+    { "type": "textarea", "id": "hero_subtitle", "label": "Hero Subtitle", "default": "Discover our curated collection of handcrafted luxury lamps." },
+    { "type": "text", "id": "primary_cta_text", "label": "Primary Button Text", "default": "Shop Collection" },
+    { "type": "url", "id": "primary_cta_link", "label": "Primary Button Link" },
+    { "type": "text", "id": "secondary_cta_text", "label": "Secondary Button Text", "default": "Discover Our Story" },
+    { "type": "url", "id": "secondary_cta_link", "label": "Secondary Button Link" },
+    { "type": "text", "id": "products_eyebrow", "label": "Products Eyebrow", "default": "Featured" },
+    { "type": "text", "id": "products_title", "label": "Products Title", "default": "Signature <em>Pieces</em>" }
+  ],
+  "presets": [{ "name": "Luxury Landing" }]
+}
+{% endschema %}
