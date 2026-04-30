@@ -412,9 +412,7 @@
 }
 
 .lux-carousel__compare {
-  font-size: 14px;
-  color: var(--muted);
-  text-decoration: line-through;
+  display: none;
 }
 
 .lux-carousel__badge {
@@ -792,9 +790,7 @@
 }
 
 .lux-card__compare {
-  font-size: 13px;
-  color: var(--muted);
-  text-decoration: line-through;
+  display: none;
 }
 
 /* ════════════════════════════════════════════════════════
