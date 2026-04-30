@@ -8,6 +8,7 @@ class DetailsModal extends HTMLElement {
       'keyup',
       (event) => event.code.toUpperCase() === 'ESCAPE' && this.close()
     );
+    //asdfasdfadfs
     this.summaryToggle.addEventListener(
       'click',
       this.onSummaryClick.bind(this)
