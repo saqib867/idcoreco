@@ -671,8 +671,19 @@
 
 .lux-products__grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
   gap: 24px;
+}
+
+.lux-products__grid.grid--4-col-desktop {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.lux-products__grid.grid--3-col-desktop {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.lux-products__grid.grid--2-col-desktop {
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .lux-card {

@@ -228,7 +228,7 @@
         <a href="/collections/all" class="lux-section-head__link">View All <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
 
-      <div class="lux-products__grid">
+      <div class="lux-products__grid grid--4-col-desktop">
         {% assign featured_collection = collections[section.settings.featured_collection] %}
         {% if featured_collection == blank or featured_collection.products.size == 0 %}
           {% assign featured_collection = collections['all'] %}
