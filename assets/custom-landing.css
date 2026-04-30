@@ -912,7 +912,20 @@
   }
 
   .lux-products__grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+
+  .lux-card__media-box {
+    padding: 15px !important;
+  }
+
+  .lux-card__content {
+    padding: 12px !important;
+  }
+
+  .lux-modern-card h3 {
+    font-size: 13px !important;
   }
 
   .lux-hero__content {
