@@ -80,7 +80,23 @@
 }
 
 .price--on-sale .price-item--regular {
-  display: none !important;
+  display: inline-block;
+  color: #999;
+  text-decoration: line-through;
+  font-size: 0.85em;
+  margin-right: 1rem;
+}
+
+.price__percentage {
+  display: inline-block;
+  background: #ff6a4a;
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  margin-left: 10px;
+  vertical-align: middle;
 }
 
 .unit-price {

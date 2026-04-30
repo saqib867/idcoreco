@@ -790,7 +790,10 @@
 }
 
 .lux-card__compare {
-  display: none;
+  display: inline-block;
+  text-decoration: line-through;
+  color: #999;
+  font-size: 14px;
 }
 
 /* ════════════════════════════════════════════════════════
@@ -939,7 +942,7 @@
   }
 
   .lux-products__grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .lux-features__inner {

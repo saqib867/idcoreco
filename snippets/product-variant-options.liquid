@@ -59,8 +59,26 @@
         class="disabled"
       {% endif %}
     >
-    <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
-      {{ value -}}
+    {%- liquid
+      assign is_color = false
+      assign option_name_downcase = option.name | downcase
+      if option_name_downcase contains 'color' or option_name_downcase contains 'colour' or option_name_downcase contains 'finish' or option_name_downcase contains 'material' or option_name_downcase contains 'biege' or option_name_downcase contains 'beige'
+        assign is_color = true
+      endif
+    -%}
+    <label 
+      for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
+      {% if is_color %}
+        class="swatch-label"
+        style="--swatch-color: {{ value | handle }}; background-color: var(--swatch-color) !important;"
+        title="{{ value }}"
+      {% endif %}
+    >
+      {%- if is_color -%}
+        <span class="visually-hidden">{{ value }}</span>
+      {%- else -%}
+        {{ value -}}
+      {%- endif -%}
       <span class="visually-hidden">{{ 'products.product.variant_sold_out_or_unavailable' | t }}</span>
     </label>
   {%- elsif block.settings.picker_type == 'dropdown' -%}

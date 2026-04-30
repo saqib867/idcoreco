@@ -230,6 +230,58 @@ fieldset.product-form__input .form__label {
   color: rgb(var(--color-background));
 }
 
+/* Color Swatches */
+.swatch-label {
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 50% !important;
+  padding: 0 !important;
+  min-width: 32px !important;
+  border: 1px solid rgba(0,0,0,0.1) !important;
+  box-shadow: none !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  background-size: cover !important;
+}
+
+.swatch-label:hover {
+  transform: scale(1.1);
+  border-color: #1a1a1a !important;
+}
+
+.product-form__input input[type='radio']:checked + .swatch-label {
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #1a1a1a !important;
+  transform: scale(1.15);
+  z-index: 1;
+}
+
+/* Common Color Handle Mappings for non-standard CSS colors */
+.swatch-label[style*="--swatch-color: gold"] { background-color: #d4af37 !important; }
+.swatch-label[style*="--swatch-color: silver"] { background-color: #c0c0c0 !important; }
+.swatch-label[style*="--swatch-color: rose-gold"] { background-color: #b76e79 !important; }
+.swatch-label[style*="--swatch-color: gunmetal"] { background-color: #2a3439 !important; }
+.swatch-label[style*="--swatch-color: charcoal"] { background-color: #36454f !important; }
+.swatch-label[style*="--swatch-color: bronze"] { background-color: #cd7f32 !important; }
+.swatch-label[style*="--swatch-color: beige"],
+.swatch-label[style*="--swatch-color: biege"] { background-color: #f5f5dc !important; }
+.swatch-label[style*="--swatch-color: walnut"] { background-color: #773f1a !important; }
+.swatch-label[style*="--swatch-color: oak"] { background-color: #bf8d3c !important; }
+
+.product-form__input input[type='radio'].disabled + .swatch-label {
+  opacity: 0.3;
+  text-decoration: none !important;
+}
+
+.product-form__input input[type='radio'].disabled + .swatch-label::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: #000;
+  transform: rotate(-45deg);
+}
+
 .product-form__input input[type='radio']:not(.disabled) + label > .visually-hidden {
   display: none;
 }
