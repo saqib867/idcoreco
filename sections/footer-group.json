@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "name": "t:sections.footer.name",
   "type": "footer",
@@ -9,7 +18,7 @@
           "type": "text",
           "settings": {
             "heading": "",
-            "subtext": "<h2 style='font-size: 24px; font-weight: bold; margin-bottom: 16px; color: #333;'><span style='color: #ff6a4a;'>idecore</span>.co</h2><p style='color: #777;'>Elegant home decor at your fingertips. Discover stylish table lamps, modern accents, and unique decorative pieces</p>",
+            "subtext": "<h2 style=\"font-size: 24px; font-weight: bold; margin-bottom: 16px; color: #333;\">\n<span style=\"color: #ff6a4a;\">idecore</span>.co</h2><p style=\"color: #777;\">Elegant home decor at your fingertips. Discover stylish table lamps, modern accents, and unique decorative pieces</p>",
             "show_social": false
           }
         },
@@ -17,14 +26,15 @@
           "type": "text",
           "settings": {
             "heading": "Our Company",
-            "subtext": "<ul style='list-style: none; padding: 0; margin: 0;'><li><a href='/' style='color:#777; text-decoration:none;'>Home</a></li><li><a href='/collections/all' style='color:#777; text-decoration:none;'>Product</a></li><li><a href='/contact' style='color:#777; text-decoration:none;'>Contact</a></li></ul>"
+            "subtext": "<ul style=\"list-style: none; padding: 0; margin: 0;\">\n<li><a href=\"/\" style=\"color:#777; text-decoration:none;\">Home</a></li>\n<li><a href=\"/collections/all\" style=\"color:#777; text-decoration:none;\">Product</a></li>\n<li><a href=\"/contact\" style=\"color:#777; text-decoration:none;\">Contact</a></li>\n</ul>",
+            "show_social": false
           }
         },
         "contact": {
           "type": "text",
           "settings": {
             "heading": "Store Information",
-            "subtext": "<ul class='footer-contact-list' style='list-style: none; padding: 0; margin: 0; color: #777;'><li>157md 1st floor sector j phase 6 DHA, Lahore, Pakistan 57000</li><li>03000966631</li><li>gfbinaryoptions0966631@gmail.com</li></ul>",
+            "subtext": "<ul class=\"footer-contact-list\" style=\"list-style: none; padding: 0; margin: 0; color: #777;\">\n<li>157md 1st floor sector j phase 6 DHA, Lahore, Pakistan 57000</li>\n<li>03000966631</li>\n<li>gfbinaryoptions0966631@gmail.com</li>\n</ul>",
             "show_social": true
           }
         }
@@ -39,7 +49,7 @@
         "newsletter_enable": false,
         "newsletter_heading": "",
         "enable_follow_on_shop": false,
-        "show_social": false,
+        "show_social": true,
         "enable_country_selector": false,
         "enable_language_selector": false,
         "payment_enable": false,
