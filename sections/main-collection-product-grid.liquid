@@ -148,40 +148,33 @@
                      assign lazy_load = true
                    endif
                 -%}
-                <a href="{{ product.url }}" class="lux-modern-card lux-cat-reveal" style="text-decoration: none; display: flex; flex-direction: column; background: #fff; border: 1px solid #f1f5f9; border-radius: 12px; overflow: hidden; transition: box-shadow 0.3s ease; height: 100%;">
-                  <div class="lux-card__media-box" style="position: relative; padding: 30px; aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center; background: #fff; width: 100%;">
+                <a href="{{ product.url }}" class="lux-modern-card lux-cat-reveal">
+                  <div class="lux-card__media-box">
                     {%- if product.featured_image -%}
                       <img
-                        src="{{ product.featured_image | img_url: '600x600' }}"
+                        src="{{ product.featured_image | img_url: '800x800', crop: 'center' }}"
                         alt="{{ product.title | escape }}"
                         {% if lazy_load %}loading="lazy"{% else %}loading="eager"{% endif %}
-                        style="max-width: 100%; max-height: 100%; object-fit: contain; transition: transform 0.5s ease;"
                       >
                     {%- else -%}
-                      <div class="lux-card__placeholder" style="width: 100%; height: 100%; background: #f5f5f5;">{{ 'product-1' | placeholder_svg_tag }}</div>
+                      <div class="lux-card__placeholder">{{ 'product-1' | placeholder_svg_tag }}</div>
                     {%- endif -%}
                     
                     {%- if product.compare_at_price > product.price and product.available -%}
                       {%- assign pct = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price -%}
-                      <span style="position: absolute; top: 15px; left: 15px; background: #0f172a; color: #fff; padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700;">{{ pct }}% off</span>
+                      <span class="lux-card__sale-badge">{{ pct }}% OFF</span>
                     {%- elsif product.available == false -%}
-                      <span style="position: absolute; top: 15px; left: 15px; background: #f1f5f9; color: #64748b; padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700;">Sold Out</span>
+                      <span class="lux-card__sale-badge lux-card__sale-badge--soldout">Sold Out</span>
                     {%- endif -%}
                   </div>
                   
-                  <div class="lux-card__content" style="padding: 16px; border-top: 1px solid #f1f5f9; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
-                    <h3 style="font-size: 14px; font-weight: 500; color: #334155; margin: 0 0 12px; font-family: 'Inter', sans-serif; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ product.title }}</h3>
-
-                    <div style="display: flex; align-items: center; justify-content: space-between; margin-top: auto;">
-                      <div style="display: flex; align-items: center; gap: 8px;">
-                        <span style="font-size: 16px; font-weight: 700; color: #0f172a;">{{ product.price | money }}</span>
-                        {%- if product.compare_at_price > product.price and product.available -%}
-                          <span style="font-size: 13px; color: #94a3b8; text-decoration: line-through;">{{ product.compare_at_price | money }}</span>
-                        {%- endif -%}
-                      </div>
-                      <div style="background: #fff; border: 1px solid #e2e8f0; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #64748b; transition: all 0.2s ease;">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
-                      </div>
+                  <div class="lux-card__content">
+                    <h3 class="lux-card__title">{{ product.title }}</h3>
+                    <div class="lux-card__price-row">
+                      <span class="lux-card__price">{{ product.price | money }}</span>
+                      {%- if product.compare_at_price > product.price and product.available -%}
+                        <span class="lux-card__compare">{{ product.compare_at_price | money }}</span>
+                      {%- endif -%}
                     </div>
                   </div>
                 </a>

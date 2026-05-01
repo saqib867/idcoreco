@@ -239,7 +239,7 @@
             <div class="lux-card__media">
               {% if product.featured_image %}
                 <img
-                  src="{{ product.featured_image | img_url: '600x' }}"
+                  src="{{ product.featured_image | img_url: '800x800', crop: 'center' }}"
                   alt="{{ product.title | escape }}"
                   loading="lazy"
                 >
@@ -248,14 +248,10 @@
               {% endif %}
               {% if product.compare_at_price > product.price %}
                 {% assign pct = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price %}
-                <span class="lux-card__sale-badge">-{{ pct }}%</span>
+                <span class="lux-card__sale-badge">{{ pct }}% OFF</span>
               {% endif %}
-              <div class="lux-card__hover-overlay">
-                <span class="lux-card__hover-cta">Quick View</span>
-              </div>
             </div>
             <div class="lux-card__info">
-              <span class="lux-card__vendor">{{ product.vendor }}</span>
               <h3 class="lux-card__title">{{ product.title }}</h3>
               <div class="lux-card__price-row">
                 <span class="lux-card__price">{{ product.price | money }}</span>
