@@ -27,7 +27,8 @@
       </div>
 
       <div class="lux-products__grid grid--4-col-desktop page-width" style="margin-bottom: 60px;">
-        {% for recommendation in recommendations.products limit: 4 %}
+        {% assign sorted_recs = recommendations.products | sort: 'published_at' | reverse %}
+        {% for recommendation in sorted_recs limit: 4 %}
           <div class="lux-card-reveal" style="opacity: 1; transform: none; display: flex;">
             <a href="{{ recommendation.url }}" class="lux-modern-card">
               <div class="lux-card__media-box">

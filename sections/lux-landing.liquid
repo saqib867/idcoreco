@@ -7,7 +7,7 @@
     if hero_collection == blank or hero_collection.products.size == 0
       assign hero_collection = collections['all']
     endif
-    assign hero_products = hero_collection.products
+    assign hero_products = hero_collection.products | sort: 'published_at' | reverse
   -%}
 
   <!-- ══════════════════════════════════════════
@@ -234,7 +234,8 @@
           {% assign featured_collection = collections['all'] %}
         {% endif %}
 
-        {% for product in featured_collection.products limit: 8 %}
+        {% assign products = featured_collection.products | sort: 'published_at' | reverse %}
+        {% for product in products limit: 8 %}
           <a href="{{ product.url }}" class="lux-card lux-scroll-reveal" style="animation-delay:{{ forloop.index0 | times: 0.08 | plus: 0.1 }}s">
             <div class="lux-card__media">
               {% if product.featured_image %}
