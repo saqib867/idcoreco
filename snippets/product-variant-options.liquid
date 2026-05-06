@@ -62,7 +62,7 @@
     {%- liquid
       assign is_color = false
       assign option_name_downcase = option.name | downcase
-      if option_name_downcase contains 'color' or option_name_downcase contains 'colour' or option_name_downcase contains 'finish' or option_name_downcase contains 'material' or option_name_downcase contains 'biege' or option_name_downcase contains 'beige'
+      if option_name_downcase contains 'color' or option_name_downcase contains 'colour' or option_name_downcase contains 'biege' or option_name_downcase contains 'beige'
         assign is_color = true
       endif
     -%}

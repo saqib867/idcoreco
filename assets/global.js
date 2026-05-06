@@ -811,11 +811,13 @@ class VariantSelects extends HTMLElement {
 
   onVariantChange() {
     this.updateOptions();
+    this.updateLabels();
     this.updateMasterId();
     this.toggleAddButton(true, '', false);
     this.updatePickupAvailability();
     this.removeErrorMessage();
     this.updateVariantStatuses();
+
 
     if (!this.currentVariant) {
       this.toggleAddButton(true, '', true);
@@ -831,6 +833,14 @@ class VariantSelects extends HTMLElement {
 
   updateOptions() {
     this.options = Array.from(this.querySelectorAll('select'), (select) => select.value);
+  }
+
+  updateLabels() {
+    this.querySelectorAll('.product-form__input').forEach((inputWrapper, index) => {
+      const label = inputWrapper.querySelector('.selected-value');
+      if (!label) return;
+      label.textContent = this.options[index];
+    });
   }
 
   updateMasterId() {
